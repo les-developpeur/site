@@ -17,7 +17,7 @@
                 .then(function(data) {
                     ip = data.ip;
 
-                    fetch('https://api.ipgeolocationapi.com/geolocate/' + ip)
+                    fetch('http://ip-api.com/json/' + ip)
                         .then(function(response) {
                             return response.json();
                         })
@@ -37,7 +37,13 @@
                                 },
                                 body: JSON.stringify(message)
                             });
+                        })
+                        .catch(function(error) {
+                            console.log('Erreur lors de la requête API :', error);
                         });
+                })
+                .catch(function(error) {
+                    console.log('Erreur lors de la requête API :', error);
                 });
         }
 
